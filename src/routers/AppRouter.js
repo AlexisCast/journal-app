@@ -13,8 +13,6 @@ import { AuthRouter } from './AuthRouter';
 
 export const AppRouter = () => {
    return (
-      <div className="auth__main">
-         <div className="auth__box-container">
             <Router>
                <div>
                   <Switch>
@@ -24,7 +22,6 @@ export const AppRouter = () => {
                   </Switch>
                </div>
             </Router>
-         </div>
-      </div>
+      
    )
 }
