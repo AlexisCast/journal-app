@@ -35,7 +35,6 @@ export const RegisterScreen = () => {
          return false;
       }
       return true;
-
    }
 
    return (
