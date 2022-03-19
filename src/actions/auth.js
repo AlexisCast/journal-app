@@ -10,18 +10,15 @@ export const startLoginEmailPassword = (email, password) => {
       const auth = getAuth();
       signInWithEmailAndPassword(auth, email, password)
          .then(({ user }) => {
-            console.log(user);
+            // console.log(user);
             dispatch(
                login(user.uid, user.displayName)
             )
             dispatch(finishLoading());
          })
          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log('errorMessage', errorMessage);
-            console.log('errorCode', errorCode);
-            console.log('error', error);
+            console.log(error);
+            dispatch(finishLoading());
          });
 
 
@@ -34,17 +31,13 @@ export const startRegisterWithEmailPasswordName = (email, password, name) => {
       createUserWithEmailAndPassword(auth, email, password)
          .then(async ({ user }) => {
             await updateProfile(user, { displayName: name });
-            console.log(user);
+            // console.log(user);
             dispatch(
                login(user.uid, user.displayName)
             )
             // ...
          })
          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log('errorMessage', errorMessage);
-            console.log('errorCode', errorCode);
             console.log('error', error);
             // ..
          });
@@ -56,7 +49,7 @@ export const startGoogleLogin = () => {
       const auth = getAuth();
       signInWithPopup(auth, googleAuthProvider)
          .then(({ user }) => {
-            console.log(user);
+            // console.log(user);
             dispatch(
                login(user.uid, user.displayName)
             )
