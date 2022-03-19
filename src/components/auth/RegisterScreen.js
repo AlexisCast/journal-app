@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import validator from 'validator';
+import { startRegisterWithEmailPasswordName } from '../../actions/auth';
 import { removeError, setError } from '../../actions/ui';
 import { useForm } from '../../hooks/useForm';
 
@@ -9,7 +10,7 @@ export const RegisterScreen = () => {
 
    const dispatch = useDispatch();
    const { msgError } = useSelector(state => state.ui);
-   console.log(msgError);
+   // console.log(msgError);
 
    const [formValues, handleInputChange, reset] = useForm({
       name: 'test',
@@ -23,7 +24,7 @@ export const RegisterScreen = () => {
    const handleRegister = (e) => {
       e.preventDefault();
       if (isFormValid()) {
-         console.log('Form Correct');
+         dispatch(startRegisterWithEmailPasswordName(email, password, name));
       }
       // console.log(formValues);
    }
