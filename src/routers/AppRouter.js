@@ -5,7 +5,7 @@ import {
    BrowserRouter,
    Routes,
    Route,
- } from "react-router-dom";
+} from "react-router-dom";
 import { JournalScreen } from '../components/journal/JournalScreen';
 import { AuthRouter } from './AuthRouter';
 import { login } from '../actions/auth';
