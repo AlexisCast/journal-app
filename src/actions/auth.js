@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 
 import { getAuth, signInWithPopup, updateProfile, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { googleAuthProvider } from '../firebase/firebase-config';
@@ -19,6 +20,7 @@ export const startLoginEmailPassword = (email, password) => {
          .catch((error) => {
             console.log(error);
             dispatch(finishLoading());
+            Swal.fire("Error", error.code, "error");
          });
 
 
@@ -39,7 +41,7 @@ export const startRegisterWithEmailPasswordName = (email, password, name) => {
          })
          .catch((error) => {
             console.log('error', error);
-            // ..
+            Swal.fire("Error", error.code, "error");
          });
    }
 }
@@ -71,7 +73,7 @@ export const startLogout = () => {
       signOut(auth).then(() => {
          dispatch(logout());
       }).catch((error) => {
-         // An error happened.
+         Swal.fire("Error", error.code, "error");
       });
    }
 }
