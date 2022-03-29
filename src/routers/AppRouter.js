@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import {
@@ -18,6 +18,10 @@ export const AppRouter = () => {
 
    const dispatch = useDispatch();
 
+   const [cheking, setCheking] = useState(true);
+   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+
    useEffect(() => {
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
@@ -26,13 +30,19 @@ export const AppRouter = () => {
             // https://firebase.google.com/docs/reference/js/firebase.User
             console.log(user);
             dispatch(login(user.uid, user.displayName));
-            // ...
+            setIsLoggedIn(true);
          } else {
-            // User is signed out
-            // ...
+            setIsLoggedIn(false);
          }
+         setCheking(false);
       });
-   }, [dispatch])
+   }, [dispatch, setCheking, setIsLoggedIn])
+
+   if (cheking) {
+      return (
+         <h1>Wait...</h1>
+      )
+   }
 
 
    return (
