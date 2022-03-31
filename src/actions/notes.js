@@ -61,13 +61,20 @@ export const startSaveNote = (note) => {
          await updateDoc(noteRef, noteToFirestore)
             .then(() => {
                Swal.fire("Success", "Succesfully Updated", "success");
-            })
+            });
+
+         dispatch(refreshNote(note.id,note));
+
       } catch (error) {
          console.log(error);
          Swal.fire("Error", error.code, "error");
-
-
       }
-
    }
 }
+
+export const refreshNote=(id,note)=>({
+   type:types.notesUpdated,
+   payload:{
+      id,note
+   }
+})

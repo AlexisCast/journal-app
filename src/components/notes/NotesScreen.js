@@ -11,7 +11,7 @@ export const NotesScreen = () => {
    const { active: note } = useSelector(state => state.notes);
    // console.log("note", note);
    const [formValues, handleInputChange, reset] = useForm(note);
-   console.log("formValues", formValues);
+   // console.log("formValues", formValues);
    const { body, title } = formValues;
 
    const activeId = useRef(note.id);
